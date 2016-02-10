@@ -5,10 +5,13 @@ module JiraIssue =
     open Gambot.Jira.JiraCommon
 
     let projectIds = ["MIR-"; "GAM-"]
-    let listedIds (message: string) = projectIds |> List.filter (fun x -> message.Contains(x))
+    let projectIdIsInMessage message projectId =
+        let m = Regex.Match(message, "(?i)" + projectId)
+        m.Success
+    let listedIds (message: string) = projectIds |> List.filter (fun projectId -> projectIdIsInMessage message projectId)
 
     // creates the pattern "MIR-\d+|GAM-\d+|..."
-    let pattern = projectIds |> List.map (fun x -> x + "\d+") |> String.concat "|"
+    let pattern = projectIds |> List.map (fun projectId -> sprintf "(?i)%s\d+" projectId) |> String.concat "|"
 
     let canRespond message =
         let m = Regex.Matches(message, pattern)
