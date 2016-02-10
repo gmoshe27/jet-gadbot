@@ -55,7 +55,7 @@ module JiraCommon =
                 return None
             else
                 let! responseBody = response.Content.ReadAsStringAsync() |> Async.AwaitTask
-                let issue = readResponse credentials responseBody
+                let issue = readResponse creds responseBody
                 return Some issue
         }
 
