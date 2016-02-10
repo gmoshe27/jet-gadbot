@@ -4,4 +4,5 @@ type Credentials = {
     SlackToken : string
     JiraUserName : string
     JiraPassword : string
+    JiraUrl : string
 }

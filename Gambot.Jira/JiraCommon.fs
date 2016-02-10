@@ -22,11 +22,11 @@ module JiraCommon =
         }
         attachment
 
-    let readResponse jsonResponse =
+    let readResponse credentials jsonResponse =
         let resp = JsonConvert.DeserializeObject<Issue> jsonResponse
         let issue = {
             IssueName = resp.key
-            IssueLink = sprintf "https://my-jet.atlassian.net/browse/%s" resp.key
+            IssueLink = sprintf "%s/browse/%s" credentials.JiraUrl resp.key
             Summary = resp.fields.summary
             CreatedBy = resp.fields.creator.displayName
             Type = resp.fields.issueType.name
@@ -41,7 +41,7 @@ module JiraCommon =
 
     let getTicketDetails creds issue = 
         async {
-            let url = "https://my-jet.atlassian.net/rest/api/2/issue/" + issue
+            let url = sprintf "%s/rest/api/2/issue/%s" creds.JiraUrl issue
 
             let base64Credentials = 
                 sprintf "%s:%s" creds.JiraUserName creds.JiraPassword
@@ -55,12 +55,12 @@ module JiraCommon =
                 return None
             else
                 let! responseBody = response.Content.ReadAsStringAsync() |> Async.AwaitTask
-                let issue = readResponse responseBody
+                let issue = readResponse credentials responseBody
                 return Some issue
         }
 
     let getOpenJiraIssues credentials username =
-        let url = sprintf "https://my-jet.atlassian.net/rest/api/2/search"
+        let url = sprintf "%s/rest/api/2/search" credentials.JiraUrl
         let jql = sprintf "jql=assignee='%s' and status='Dev in Progress'" username |> Uri.EscapeUriString
         let openTicketsQuery = sprintf "%s?%s" url jql
 
