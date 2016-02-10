@@ -11,7 +11,8 @@ module JiraIssue =
     let listedIds (message: string) = projectIds |> List.filter (fun projectId -> projectIdIsInMessage message projectId)
 
     // creates the pattern "MIR-\d+|GAM-\d+|..."
-    let pattern = projectIds |> List.map (fun projectId -> sprintf "(?i)%s\d+" projectId) |> String.concat "|"
+    //let pattern = projectIds |> List.map (fun projectId -> sprintf "(?i)%s\d+" projectId) |> String.concat "|"
+    let pattern = "(?i)[a-zA-Z]+-\d+"
 
     let canRespond message =
         let m = Regex.Matches(message, pattern)
