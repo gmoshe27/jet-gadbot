@@ -19,7 +19,6 @@ module Standup =
         match slackUsername with
         | Some username ->
             let user = slackUser.FullName
-            //let username = "gad@jet.com" // TODO: Overwriting username for testing
             let openIssues = getOpenJiraIssues credentials username
             let issueList = 
                 openIssues
