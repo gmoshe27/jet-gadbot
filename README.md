@@ -24,11 +24,12 @@ Set these environment variables
 GADBOT_SLACK_TOKEN
 GADBOT_JIRA_USERNAME
 GADBOT_JIRA_PASSWORD
+GADBOT_JIRA_URL
 ```
 If you don't feel like adding the credentials as an environment variable, you can add them to the Gadbot.Settings module
 ```fsharp
 let SLACK_TOKEN = getSystemCredential "GADBOT_SLACK_TOKEN" "YOUR-SLACK-TOKEN"
 let JIRA_USERNAME = getSystemCredential "GADBOT_JIRA_USERNAME" "YOUR-JIRA-USERNAME"
 let JIRA_PASSWORD = getSystemCredential "GADBOT_JIRA_PASSWORD" "YOUR-JIRA-PASSWORD"
+let JIRA_URL = getEnvironmentVariable "GADBOT_JIRA_URL" "https://your-company.atlassian.net"
 ```
-  
