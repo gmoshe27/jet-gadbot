@@ -12,7 +12,7 @@ type JiraResponder() =
             JiraIssue.canRespond context.Message.Text
 
         member this.GetResponse context = 
-            let creds = { SlackToken = Token; JiraUserName = JIRA_USERNAME; JiraPassword = JIRA_PASSWORD }
+            let creds = { SlackToken = SLACK_TOKEN; JiraUserName = JIRA_USERNAME; JiraPassword = JIRA_PASSWORD }
             let attachments = JiraIssue.respond creds context.Message.Text |> Async.RunSynchronously
             let slackAttachments =
                 attachments 

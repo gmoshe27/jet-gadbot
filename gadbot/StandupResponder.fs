@@ -10,7 +10,7 @@ type StandupResponder() =
             Standup.canRespond context.Message.Text
 
         member this.GetResponse context =
-            let creds = { SlackToken = Token; JiraUserName = JIRA_USERNAME; JiraPassword = JIRA_PASSWORD }
+            let creds = { SlackToken = SLACK_TOKEN; JiraUserName = JIRA_USERNAME; JiraPassword = JIRA_PASSWORD }
             let slackUser = { 
                 UserId = context.Message.User.ID
                 FormattedUserId = context.Message.User.FormattedUserID

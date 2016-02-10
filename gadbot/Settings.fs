@@ -7,6 +7,6 @@
         | null -> defaultValue
         | _ -> credential
 
-    let Token = getSystemCredential "GADBOT_JIRA_TOKEN" "YOUR-JIRA-TOKEN"
+    let SLACK_TOKEN = getSystemCredential "GADBOT_SLACK_TOKEN" "YOUR-SLACK-TOKEN"
     let JIRA_USERNAME = getSystemCredential "GADBOT_JIRA_USERNAME" "YOUR-JIRA-USERNAME"
     let JIRA_PASSWORD = getSystemCredential "GADBOT_JIRA_PASSWORD" "YOUR-JIRA-PASSWORD"

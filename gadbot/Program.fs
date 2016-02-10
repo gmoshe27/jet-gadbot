@@ -18,7 +18,7 @@ let main argv =
         bot.Responders.Add standupResponder
         bot.Responders.Add gambotDisResponder
         bot.Responders.Add jiraResponder
-        bot.Connect Token |> ignore
+        bot.Connect SLACK_TOKEN |> ignore
 
         let output = System.Console.ReadLine()
         0 // return an integer exit code
