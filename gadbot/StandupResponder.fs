@@ -1,6 +1,5 @@
-﻿namespace Gadbot.Responders
+﻿namespace Gadbot
 
-open Gadbot.Settings
 open Gambot.Jira
 open Gambot.Jira.SlackHelper
 
@@ -10,7 +9,7 @@ type StandupResponder() =
             Standup.canRespond context.Message.Text
 
         member this.GetResponse context =
-            let creds = { SlackToken = SLACK_TOKEN; JiraUserName = JIRA_USERNAME; JiraPassword = JIRA_PASSWORD }
+            let creds = { SlackToken = Settings.SLACK_TOKEN; JiraUserName = Settings.JIRA_USERNAME; JiraPassword = Settings.JIRA_PASSWORD }
             let slackUser = { 
                 UserId = context.Message.User.ID
                 FormattedUserId = context.Message.User.FormattedUserID

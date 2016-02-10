@@ -1,8 +1,7 @@
-﻿namespace Gadbot.Responders
+﻿namespace Gadbot
 
 open System
 open System.Collections.Generic
-open Gadbot.Settings
 open Gambot.Jira
 
 type JiraResponder() =
@@ -12,7 +11,7 @@ type JiraResponder() =
             JiraIssue.canRespond context.Message.Text
 
         member this.GetResponse context = 
-            let creds = { SlackToken = SLACK_TOKEN; JiraUserName = JIRA_USERNAME; JiraPassword = JIRA_PASSWORD }
+            let creds = { SlackToken = Settings.SLACK_TOKEN; JiraUserName = Settings.JIRA_USERNAME; JiraPassword = Settings.JIRA_PASSWORD }
             let attachments = JiraIssue.respond creds context.Message.Text |> Async.RunSynchronously
             let slackAttachments =
                 attachments 

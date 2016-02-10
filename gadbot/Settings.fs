@@ -1,4 +1,6 @@
-﻿module Gadbot.Settings
+﻿namespace Gadbot
+
+module Settings =
     open System
 
     let getSystemCredential environmentVariable defaultValue = 

@@ -1,4 +1,5 @@
-﻿namespace Gadbot.Responders
+﻿namespace Gadbot
+
 open System.Text.RegularExpressions
 
 type GambotDisResponder() =
